@@ -1,0 +1,10 @@
+@font-face {
+  font-family: "Montserrat-Medium";
+  src: url("./fonts/Montserrat-Medium.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  font-family: "Montserrat-Medium";
+}

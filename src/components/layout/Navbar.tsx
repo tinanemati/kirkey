@@ -35,6 +35,9 @@ const Navbar: React.FC = () => {
       </div>
       <div>Pricing</div>
       <div>About Us</div> 
+      <button className="get-started">
+          Get Started
+        </button>
     </nav>
   );
 };
