@@ -1,0 +1,11 @@
+.navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
