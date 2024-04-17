@@ -1,6 +1,6 @@
 import React from "react";
 import CancelIcon from "@mui/icons-material/Cancel";
-import avator from "../assets/avatar.png";
+import avator from "../../../assets/avatar.png";
 import "./AuthorCard.css";
 
 interface AuthorCardProps {

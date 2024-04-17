@@ -1,8 +1,8 @@
 import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import AuthorCard from "./AuthorCard";
+import AuthorCard from "./AuthorCard/AuthorCard";
 import "./AuthorList.css";
-import data from "../data.json";
+import data from "../../data.json";
 
 const AuthorList: React.FC = () => {
   const authors = data.authors;
