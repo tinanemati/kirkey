@@ -23,7 +23,7 @@ const AuthorCard: React.FC<AuthorCardProps> = ({ name, email }) => {
             <div className="container-card-email">{email}</div>
           </div>
         </div>
-        <CancelIcon color="action" />
+        <CancelIcon color="disabled"/>
       </div>
     </>
   );
