@@ -1,0 +1,54 @@
+{
+  "authors": [
+    {
+      "name": "Haruki Murakami",
+      "email": "haruki@example.com",
+      "total_sales": "$89.94"
+    },
+    {
+      "name": "Toni Morrison",
+      "email": "toni@example.com",
+      "total_sales": "$83.96"
+    },
+    {
+      "name": "Margaret Atwood",
+      "email": "margaret@example.com",
+      "total_sales": "$67.96"
+    },
+    {
+      "name": "Ernest Hemingway",
+      "email": "ernest@example.com",
+      "total_sales": "$64.95"
+    },
+    {
+      "name": "Stephen King",
+      "email": "stephen@example.com",
+      "total_sales": "$48.98"
+    },
+    {
+      "name": "Jane Austen",
+      "email": "jane@example.com",
+      "total_sales": "$47.97"
+    },
+    {
+      "name": "J.K. Rowling",
+      "email": "jk@example.com",
+      "total_sales": "$41.98"
+    },
+    {
+      "name": "George Orwell",
+      "email": "george@example.com",
+      "total_sales": "$35.97"
+    },
+    {
+      "name": "Lorelai Gilmore",
+      "email": "lorelai@example.com",
+      "total_sales": "$32.97"
+    },
+    {
+      "name": "Agatha Christie",
+      "email": "agatha@example.com",
+      "total_sales": "$28.98"
+    }
+  ]
+}
