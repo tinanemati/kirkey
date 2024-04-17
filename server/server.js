@@ -7,18 +7,6 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// get all authors
-app.get("/authors", async (req, res) => {
-  try {
-    const allAuthors = await pool.query(
-      "SELECT * FROM authors ORDER BY date_of_birth LIMIT 10"
-    );
-    res.json(allAuthors.rows);
-  } catch (error) {
-    console.log(error.message);
-  }
-});
-
 // Define a route for handling the API request
 app.get("/top-authors", async (req, res) => {
   try {
@@ -53,13 +41,12 @@ app.get("/top-authors", async (req, res) => {
     if (rows.length === 0) {
       return res
         .status(404)
-        .json({ error: `Author "${author_name}" not found` });
+        .json({ error: `No Author found with name: "${author_name}"` });
     }
 
     res.status(200).json(rows);
   } catch (error) {
-    console.error("Error executing query:", error);
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: "Whoops something went wrong, try again!" });
   }
 });
 
