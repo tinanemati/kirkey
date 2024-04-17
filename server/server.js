@@ -1,19 +1,46 @@
 import express from "express";
 import cors from "cors";
 import pool from "./db.js";
+import NodeCache from "node-cache";
+import rateLimit from "express-rate-limit";
+
 const app = express();
+const myCache = new NodeCache();
 
 // middleware
 app.use(cors());
 app.use(express.json());
 
+// Rate limiting
+const limiter = rateLimit({
+  windowMs: 15 * 60 * 1000, // 15 minutes
+  max: 100, // limit each IP to 100 requests per windowMs
+  handler: function (req, res) {
+    res
+      .status(429)
+      .json({ error: "Too many requests, please try again later." });
+  },
+});
+
+app.use(limiter);
+
 // Define a route for handling the API request
 app.get("/top-authors", async (req, res) => {
   try {
     const { author_name } = req.query;
+    const cacheKey = author_name ? author_name : "top10";
+    // Try getting data from cache
+    const cachedData = myCache.get(cacheKey);
+    if (cachedData) {
+      return res.status(200).json(cachedData);
+    }
 
+    let query;
+    let queryParams;
+
+    // If not in cache, fetch from database
     if (!author_name) {
-        const query = `
+      query = `
         SELECT authors.name, SUM(item_price * quantity) AS total_sales 
         FROM sale_items 
         JOIN books ON sale_items.book_id = books.id 
@@ -22,12 +49,8 @@ app.get("/top-authors", async (req, res) => {
         ORDER BY total_sales DESC
         LIMIT 10;
       `;
-      
-      const { rows } = await pool.query(query);
-      return res.status(200).json(rows);
-    }
-
-    const query = `
+    } else {
+      query = `
         SELECT authors.name, SUM(item_price * quantity) AS total_sales 
         FROM sale_items 
         JOIN books ON sale_items.book_id = books.id 
@@ -35,14 +58,19 @@ app.get("/top-authors", async (req, res) => {
         WHERE authors.name = $1
         GROUP BY authors.name;
       `;
+      queryParams = [author_name];
+    }
 
-    const { rows } = await pool.query(query, [author_name]);
+    const { rows } = await pool.query(query, queryParams);
 
     if (rows.length === 0) {
       return res
         .status(404)
         .json({ error: `No Author found with name: "${author_name}"` });
     }
+
+    // Store result in cache for 1 hour
+    myCache.set(cacheKey, rows, 3600);
 
     res.status(200).json(rows);
   } catch (error) {
