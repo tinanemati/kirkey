@@ -1,6 +1,6 @@
 import React from "react";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import CancelIcon from "@mui/icons-material/Cancel";
+import AuthorCard from "./AuthorCard";
 import "./AuthorList.css";
 
 const AuthorList: React.FC = () => {
@@ -11,7 +11,8 @@ const AuthorList: React.FC = () => {
           <ArrowBackIcon />
           <h4>You have Top 10 Authors</h4>
         </div>
-        <div>hello</div>
+        <AuthorCard />
+        <p>hello</p>
       </div>
     </>
   );

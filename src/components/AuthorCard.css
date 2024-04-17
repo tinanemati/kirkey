@@ -1,0 +1,34 @@
+.container-card {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f4f5f6;
+}
+
+.container-card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container-card-contact-info {
+  padding-left: 30px;
+}
+.container-card-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.container-card-name {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.container-card-email {
+    font-size: 14px;
+    font-weight: 400;
+    color: #4e616b;
+    margin-top: 10px;
+  }
