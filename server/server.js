@@ -41,11 +41,11 @@ app.get("/top-authors", async (req, res) => {
     // If not in cache, fetch from database
     if (!author_name) {
       query = `
-        SELECT authors.name, SUM(item_price * quantity) AS total_sales 
+        SELECT authors.name,  authors.email, SUM(item_price * quantity) AS total_sales 
         FROM sale_items 
         JOIN books ON sale_items.book_id = books.id 
         JOIN authors ON books.author_id = authors.id 
-        GROUP BY authors.name
+        GROUP BY authors.name, authors.email
         ORDER BY total_sales DESC
         LIMIT 10;
       `;
