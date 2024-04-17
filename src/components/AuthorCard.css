@@ -13,7 +13,8 @@
 }
 
 .container-card-contact-info {
-  padding-left: 30px;
+  padding: 10px;
+  width: 300px;
 }
 .container-card-img {
   width: 40px;

@@ -3,7 +3,12 @@ import CancelIcon from "@mui/icons-material/Cancel";
 import avator from "../assets/avatar.png";
 import "./AuthorCard.css";
 
-const AuthorCard: React.FC = () => {
+interface AuthorCardProps {
+  name: string;
+  email: string;
+}
+
+const AuthorCard: React.FC<AuthorCardProps> = ({ name, email }) => {
   return (
     <>
       <div className="container-card">
@@ -14,13 +19,10 @@ const AuthorCard: React.FC = () => {
             alt="profile pciture"
           />
           <div className="container-card-contact-info">
-            <div className="container-card-name">Jenny Appleseed</div>
-            <div className="container-card-email">
-              jenny.appleseed@example.com
-            </div>
+            <div className="container-card-name">{name}</div>
+            <div className="container-card-email">{email}</div>
           </div>
         </div>
-
         <CancelIcon color="action" />
       </div>
     </>
