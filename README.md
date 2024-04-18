@@ -41,7 +41,7 @@ Created a static React webpage that connects to an endpoint, allowing users to f
   - Successfully deployed the Firebase project and connected the React frontend application to retrieve data from this endpoint.
   - Developed a Netlify application within the project's main directory, defining build configurations, establishing deployment processes via GitHub, and ultimately deploying the static web application. 
 
-*The relevant code for backend application hosted on firebase can be found on the following repository [here](https://github.com/tinanemati/krikey-firebase-server.git)*
+*The relevant code for the backend application hosted on Firebase will be provided upon request, as it contains sensitive information such as the API key [here](https://github.com/tinanemati/krikey-firebase-server.git)*
 
 ## How to Get Started with This Repository
 
@@ -49,7 +49,7 @@ The code in this repository has been separated into two branches to distinguish 
 
 - To access and run the code used during development, navigate to the `local_dev` branch in this repository.
 
-- For the server API endpoint used in production, please refer to the [following repository](https://github.com/tinanemati/krikey-firebase-server.git) where you can find detailed instructions and documentation on how the code operates.
+- For the server API endpoint used in production, detailed instructions and documentation on how the code operates can be provided upon request, as it contains sensitive information such as the API key. Please refer to the [following repository](https://github.com/tinanemati/krikey-firebase-server.git).
 
 - To review the code used in the final development phase, you can switch to the main branch of this repository.
 
