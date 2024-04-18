@@ -1,5 +1,5 @@
 import axios from "axios";
-const TopAuthorEndPoint = "/api/top-authors";
+const TopAuthorEndPoint = "api/authors";
 
 // Function that will be used to fetch data from backend
 const topAuthors = async () => {

@@ -25,7 +25,7 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // Define a route for handling the API request
-app.get("/top-authors", async (req, res) => {
+app.get("/authors", async (req, res) => {
   try {
     const { author_name } = req.query;
     const cacheKey = author_name ? author_name : "top10";
