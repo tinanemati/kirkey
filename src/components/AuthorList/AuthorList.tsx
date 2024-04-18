@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { topAuthors } from "../../services/api.ts";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import CircularProgress from '@mui/material/CircularProgress';
 import AuthorCard from "../AuthorCard/AuthorCard";
 import "./AuthorList.css";
 
@@ -33,6 +34,14 @@ const AuthorList: React.FC = () => {
     fetchAuthors();
   }, [])
   
+  const CircularIndeterminate = () => {
+    return (
+      <div className="loader">
+        <CircularProgress color="inherit" />
+      </div>
+    );
+  }
+
   return (
     <>
       <div className="container">
@@ -41,7 +50,8 @@ const AuthorList: React.FC = () => {
           <ArrowBackIcon />
           <h4>You have Top 10 Authors</h4>
         </div>
-        {!loading && authors.map((author, index) => (
+        {loading && <CircularIndeterminate />}
+        {authors && authors.map((author, index) => (
           <AuthorCard
             key={`${index} | ${author.name} | ${author.email}}`}
             name={author.name}

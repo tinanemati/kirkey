@@ -19,3 +19,8 @@
   font-weight: bold;
   margin-top: 5px;
 }
+
+.loader {
+  display: flex;
+  justify-content: center;
+}
