@@ -1,5 +1,5 @@
 import axios from "axios";
-const TopAuthorEndPoint = "api/authors";
+const TopAuthorEndPoint = "https://krikey-challenge-3179e.web.app/authors";
 
 // Function that will be used to fetch data from backend
 const topAuthors = async () => {
