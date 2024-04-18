@@ -1,12 +1,30 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { topAuthors } from "../../services/api.ts";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
-import AuthorCard from "./AuthorCard/AuthorCard";
+import AuthorCard from "../AuthorCard/AuthorCard";
 import "./AuthorList.css";
-import data from "../../data.json";
+
+type Author = {
+  name: string;
+  email: string;
+  total_sales: string;
+};
 
 const AuthorList: React.FC = () => {
-  const authors = data.authors;
-  console.log(authors);
+  const [authors, setAuthors] = useState<Author []>();
+
+  useEffect(() =>{
+    const fetchAuthors = async () => {
+      const result = await topAuthors();
+      if (result.success) {
+        setAuthors(result.authors)
+      } else {
+        console.log(result.message)
+      }
+    }
+    fetchAuthors();
+  }, [])
+  
   return (
     <>
       <div className="container">

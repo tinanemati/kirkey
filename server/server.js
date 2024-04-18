@@ -71,7 +71,7 @@ app.get("/top-authors", async (req, res) => {
     // Store result in cache for 1 hour
     myCache.set(cacheKey, rows, 3600);
 
-    res.status(200).json({"authors": rows});
+    res.status(200).json(rows);
   } catch (error) {
     res.status(500).json({ error: "Whoops something went wrong, try again!" });
   }

@@ -1,6 +1,6 @@
 import './App.css'
 import Navbar from './components/layout/Navbar'
-import AuthorList from './components/List/AuthorList'
+import AuthorList from './components/AuthorList/AuthorList'
 
 function App() {
   return (
