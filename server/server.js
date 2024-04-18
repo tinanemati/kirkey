@@ -1,31 +1,10 @@
 import express from "express";
 import cors from "cors";
-import supabase from "./db.js";
+import pool from "./db.js"
 import NodeCache from "node-cache";
 import rateLimit from "express-rate-limit";
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
-
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
-const firebaseConfig = {
-  apiKey: "AIzaSyBMrFNYBaR7YGYueMVgN45SFUqllyccgDQ",
-  authDomain: "krikey-challenge-3179e.firebaseapp.com",
-  projectId: "krikey-challenge-3179e",
-  storageBucket: "krikey-challenge-3179e.appspot.com",
-  messagingSenderId: "143691344919",
-  appId: "1:143691344919:web:31c1207e9ff3d1728c4052",
-  measurementId: "G-MKM8KYEP4F"
-};
-
-// Initialize Firebase
-const firebaseApp = initializeApp(firebaseConfig);
-const analytics = getAnalytics(app);
-const expressApp = express();
+const app = express();
 const myCache = new NodeCache();
 
 // middleware
@@ -81,8 +60,11 @@ app.get("/top-authors", async (req, res) => {
       `;
       queryParams = [author_name];
     }
-
+    console.log("I am about to call database")
+    console.log("This is my query", query)
+    console.log("This is my queryParams", queryParams)
     const { rows } = await pool.query(query, queryParams);
+    console.log("this is rows:", rows)
     if (rows.length === 0) {
       return res
         .status(404)
