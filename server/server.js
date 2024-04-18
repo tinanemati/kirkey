@@ -51,28 +51,27 @@ app.get("/top-authors", async (req, res) => {
       `;
     } else {
       query = `
-        SELECT authors.name, SUM(item_price * quantity) AS total_sales 
+        SELECT authors.name, authors.email, SUM(item_price * quantity) AS total_sales 
         FROM sale_items 
         JOIN books ON sale_items.book_id = books.id 
         JOIN authors ON books.author_id = authors.id 
         WHERE authors.name = $1
-        GROUP BY authors.name;
+        GROUP BY authors.name, authors.email;
       `;
       queryParams = [author_name];
     }
 
     const { rows } = await pool.query(query, queryParams);
-
     if (rows.length === 0) {
       return res
         .status(404)
-        .json({ error: `No Author found with name: "${author_name}"` });
+        .json({ error: `No Author found with name: ${author_name}` });
     }
 
     // Store result in cache for 1 hour
     myCache.set(cacheKey, rows, 3600);
 
-    res.status(200).json(rows);
+    res.status(200).json({"authors": rows});
   } catch (error) {
     res.status(500).json({ error: "Whoops something went wrong, try again!" });
   }
