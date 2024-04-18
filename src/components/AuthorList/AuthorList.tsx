@@ -11,15 +11,23 @@ type Author = {
 };
 
 const AuthorList: React.FC = () => {
-  const [authors, setAuthors] = useState<Author []>();
+  const [authors, setAuthors] = useState<Author[]>([]);
+  const [errorMsg, setErrorMsg] = useState<string | undefined>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() =>{
     const fetchAuthors = async () => {
+
+      setLoading(true);
+      setErrorMsg("");
+
       const result = await topAuthors();
       if (result.success) {
         setAuthors(result.authors)
+        setLoading(false);
       } else {
-        console.log(result.message)
+        setErrorMsg(result.message);
+        setLoading(false);
       }
     }
     fetchAuthors();
@@ -28,11 +36,12 @@ const AuthorList: React.FC = () => {
   return (
     <>
       <div className="container">
+        {errorMsg && <div className="error-info">{errorMsg}</div>}
         <div className="container-header">
           <ArrowBackIcon />
           <h4>You have Top 10 Authors</h4>
         </div>
-        {authors?.map((author, index) => (
+        {!loading && authors.map((author, index) => (
           <AuthorCard
             key={`${index} | ${author.name} | ${author.email}}`}
             name={author.name}

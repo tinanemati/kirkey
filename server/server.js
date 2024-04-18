@@ -65,7 +65,7 @@ app.get("/top-authors", async (req, res) => {
     if (rows.length === 0) {
       return res
         .status(404)
-        .json({ error: `No Author found with name: ${author_name}` });
+        .json({ error: `No Author found given name of ${author_name}` });
     }
 
     // Store result in cache for 1 hour
